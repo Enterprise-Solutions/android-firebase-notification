@@ -1,26 +1,25 @@
 # Configurando Firebase
   1. Haga click izquierdo en "Tools"
-    ![Tools location](.images/01.png)
+    ![Tools location](https://github.com/Enterprise-Solutions/android-firebase-notification/blob/master/images/01.png)
 
   2. Seguidamente, haga click izquierdo en "Fibebase"
-    ![Firebase location](.images/02.png)
+    ![Firebase location](https://github.com/Enterprise-Solutions/android-firebase-notification/blob/master/images/02.png)
 
   3. Se abrirá una pestaña que es el _Asistente de Configuración de Firebase_ y deberá seleccionar la opción _Cloud Messaging_ y hacer click en _Setup Firebase Cloud Messaging_
-    ![Setup FCM](.images/03.png)
+    ![Setup FCM](https://github.com/Enterprise-Solutions/android-firebase-notification/blob/master/images/03.png)
 
   4. Haga click en el botón "Conect to Firebase" para poder conectar el proyecto a una cuenta Firebase.
-    ![Conecting to Firebase](.images/04.png)
+    ![Conecting to Firebase](https://github.com/Enterprise-Solutions/android-firebase-notification/blob/master/images/04.png)
     _Obs: se solicitará iniciar sesión con una cuenta de Firebase_
 
   5. Haga click en "Add FCM to your app" para añadir Firebase Cloud Messaging a la app
-    ![Adding FCM](.images/05.png)
+    ![Adding FCM](https://github.com/Enterprise-Solutions/android-firebase-notification/blob/master/images/05.png)
     _Obs: se agregará las dependencias de Firebase Cloud Messaging a la App_
 
   6. Cree un servicio, en este caso lo llamaremos FirebaseMessagingService el cuál extenderá las funcionalidades de FirebaseMessagingService (Desde Firebase)
-    ![Services](.images/06.png)
+    ![Services](https://github.com/Enterprise-Solutions/android-firebase-notification/blob/master/images/06.png)
     _Obs: Este servicio es necesario para recibir las notificaciones en la app_
-
-    Aquí sobrescribirá el método onMessageReceived:
+   - Aquí sobrescribirá el método onMessageReceived:
 
     ```@Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -53,20 +52,22 @@
         // message, here is where that should be initiated. See sendNotification method below.
     }
     ```
-    ![Services](.images/07.png)
+   ![Services](https://github.com/Enterprise-Solutions/android-firebase-notification/blob/master/images/07.png)
 
-  7. Declare lo siguiente en el _App manifest_
+ 7. Declare lo siguiente en el _App manifest_
+    
     ```
-      <service android:name=".FirebaseMessagingService">
+    <service android:name=".FirebaseMessagingService">
         <intent-filter>
             <action android:name="com.google.firebase.MESSAGING_EVENT" />
         </intent-filter>
     </service>
     ```
-    ![Services](.images/08.png)
+  
+   ![Services](https://github.com/Enterprise-Solutions/android-firebase-notification/blob/master/images/08.png)
 
   8. Acceda al token de registro del dispositivo.
-      - En el servicio _FirebaseMessagingService_ sobrescribe el siguiente método _onNewToken_
+      - En el servicio _FirebaseMessagingService_ sobrescribe el siguiente método _onNewToken_     
         ```
         @Override
         public void onNewToken(String token) {
@@ -78,4 +79,5 @@
             sendRegistrationToServer(token);
         }
         ```
-        ![Services](.images/09.png)
+        
+        ![Services](https://github.com/Enterprise-Solutions/android-firebase-notification/blob/master/images/09.png)
